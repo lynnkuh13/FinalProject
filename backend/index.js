@@ -67,6 +67,20 @@ app.delete('/delete', function(req,res) {
 
 })
 
+app.get('/find', function(req, res) {
+    console.log("REQ QUERY: ", req.query);
+    CookbookModel.findById(req.query.id, function(err) {
+        if (err){
+            console.log(err);
+            res.send({message: err})
+        }
+        else {
+            console.log("Result: ", cookbook);
+            res.send(cookbook);
+        }
+    })
+})
+
 app.put('/update', function(req, res) {
     console.log("ids: ", req.query.id);
     console.log("ids: ", req.body.id);
